@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ritam's Blogs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <nav class="navbar">
+        <span class="nav-logo">Ritam's Blogs</span>
+        <div class="nav-links">
+          <a href="https://linktr.ee/Ritamsworkspace137" target="_blank" rel="noopener">Links</a>
+          <a href="mailto:mail@ritamsahablogs.dev">Contact</a>
+        </div>
+      </nav>
+
+      <main>
+        <div class="bento-grid" id="bento-grid"></div>
+      </main>
+    </div>
+
+    <div class="modal-overlay" id="modal-overlay">
+      <div class="modal" id="modal">
+        <div class="modal-topbar">
+          <a class="visit-link" id="modal-visit-link" href="#" target="_blank" rel="noopener">
+            Visit Blog
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
+        </div>
+        <div class="modal-cover">
+          <img id="modal-img" src="" alt="" />
+        </div>
+        <div class="modal-body">
+          <h2 id="modal-title"></h2>
+          <p id="modal-desc"></p>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
