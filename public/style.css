@@ -74,21 +74,19 @@ body {
   gap: 12px;
 }
 
-/* Repeating pattern — 7-card cycle */
-/* Card 1: col 1-2, row span 2 (tall-wide) */
+/*
+  7-card repeating cycle — perfectly fills 6-col grid with zero gaps:
+  Row 1+2: [Card1: 2col×2row] [Card2: 2col×1row] [Card3: 2col×1row]
+  Row 2:   [Card1 cont.]      [Card4: 4col×1row (wide)            ]
+  Row 3:   [Card5: 2col×1row] [Card6: 2col×1row] [Card7: 2col×1row]
+*/
 .blog-card:nth-child(7n+1) { grid-column: span 2; grid-row: span 2; }
-/* Card 2: col 3-4, row span 1 */
 .blog-card:nth-child(7n+2) { grid-column: span 2; grid-row: span 1; }
-/* Card 3: col 5-6, row span 1 */
 .blog-card:nth-child(7n+3) { grid-column: span 2; grid-row: span 1; }
-/* Card 4: col 3-4, row span 2 */
-.blog-card:nth-child(7n+4) { grid-column: span 2; grid-row: span 2; }
-/* Card 5: col 5-6, row span 2 */
-.blog-card:nth-child(7n+5) { grid-column: span 2; grid-row: span 2; }
-/* Card 6: col 1-2, row span 1 */
+.blog-card:nth-child(7n+4) { grid-column: span 4; grid-row: span 1; }
+.blog-card:nth-child(7n+5) { grid-column: span 2; grid-row: span 1; }
 .blog-card:nth-child(7n+6) { grid-column: span 2; grid-row: span 1; }
-/* Card 7: col 3-6, row span 1 (wide) */
-.blog-card:nth-child(7n+7) { grid-column: span 4; grid-row: span 1; }
+.blog-card:nth-child(7n+7) { grid-column: span 2; grid-row: span 1; }
 
 .blog-card {
   background: var(--card-bg);
@@ -132,7 +130,7 @@ body {
 }
 
 .card-title {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--text-primary);
   white-space: nowrap;
@@ -141,17 +139,17 @@ body {
   letter-spacing: -0.1px;
 }
 
-/* Wide card (7n+7) — horizontal layout */
-.blog-card:nth-child(7n+7) {
+/* Wide card (7n+4) — horizontal layout */
+.blog-card:nth-child(7n+4) {
   flex-direction: row;
 }
 
-.blog-card:nth-child(7n+7) .card-img-wrap {
+.blog-card:nth-child(7n+4) .card-img-wrap {
   width: 260px;
   flex-shrink: 0;
 }
 
-.blog-card:nth-child(7n+7) .card-footer {
+.blog-card:nth-child(7n+4) .card-footer {
   flex: 1;
   border-top: none;
   border-left: 1px solid var(--border);
@@ -160,7 +158,7 @@ body {
   padding: 16px;
 }
 
-.blog-card:nth-child(7n+7) .card-title {
+.blog-card:nth-child(7n+4) .card-title {
   font-size: 14px;
   white-space: normal;
   display: -webkit-box;
@@ -310,24 +308,21 @@ body {
     grid-auto-rows: 200px;
   }
 
-  .blog-card:nth-child(7n+1),
-  .blog-card:nth-child(7n+2),
-  .blog-card:nth-child(7n+3),
-  .blog-card:nth-child(7n+4),
-  .blog-card:nth-child(7n+5),
-  .blog-card:nth-child(7n+6) {
-    grid-column: span 1;
-    grid-row: span 1;
-  }
+  .blog-card:nth-child(7n+1) { grid-column: span 1; grid-row: span 1; }
+  .blog-card:nth-child(7n+2) { grid-column: span 1; grid-row: span 1; }
+  .blog-card:nth-child(7n+3) { grid-column: span 1; grid-row: span 1; }
+  .blog-card:nth-child(7n+5) { grid-column: span 1; grid-row: span 1; }
+  .blog-card:nth-child(7n+6) { grid-column: span 1; grid-row: span 1; }
+  .blog-card:nth-child(7n+7) { grid-column: span 1; grid-row: span 1; }
 
-  .blog-card:nth-child(7n+7) {
+  .blog-card:nth-child(7n+4) {
     grid-column: span 2;
     grid-row: span 1;
     flex-direction: column;
   }
 
-  .blog-card:nth-child(7n+7) .card-img-wrap { width: 100%; }
-  .blog-card:nth-child(7n+7) .card-footer {
+  .blog-card:nth-child(7n+4) .card-img-wrap { width: 100%; }
+  .blog-card:nth-child(7n+4) .card-footer {
     border-left: none;
     border-top: 1px solid var(--border);
   }
@@ -338,5 +333,5 @@ body {
 @media (max-width: 480px) {
   .page-wrapper { padding: 16px 16px 48px; }
   .bento-grid { grid-template-columns: 1fr; }
-  .blog-card:nth-child(7n+7) { grid-column: span 1; }
+  .blog-card:nth-child(7n+4) { grid-column: span 1; }
 }
