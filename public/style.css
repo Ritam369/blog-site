@@ -66,6 +66,46 @@ body {
 
 .nav-links a:hover { color: var(--text-primary); }
 
+/* ── Search ── */
+.search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.search-input {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: 14px;
+  padding: 6px 12px 6px 30px;
+  width: 300px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.search-input::placeholder { color: var(--text-muted); }
+.search-input:focus { border-color: #444; }
+
+@media (max-width: 768px) {
+  .search-input { width: 140px; }
+}
+
+@media (max-width: 480px) {
+  .navbar { flex-wrap: wrap; gap: 12px; }
+  .search-wrap { width: 100%; order: 3; }
+  .search-input { width: 100%; }
+}
+
 /* ── Bento Grid ── */
 .bento-grid {
   display: grid;

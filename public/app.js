@@ -4,6 +4,9 @@ const modalImg = document.getElementById('modal-img')
 const modalTitle = document.getElementById('modal-title')
 const modalDesc = document.getElementById('modal-desc')
 const modalVisitLink = document.getElementById('modal-visit-link')
+const searchInput = document.getElementById('search-input')
+
+let allBlogs = []
 
 async function fetchBlogs() {
   const res = await fetch('/api/blogs')
@@ -26,6 +29,15 @@ function createCard(blog) {
 
   card.addEventListener('click', () => openModal(blog))
   return card
+}
+
+function renderBlogs(blogs) {
+  grid.innerHTML = ''
+  if (!blogs || blogs.length === 0) {
+    grid.innerHTML = '<div class="empty-state"><span>No blogs found.</span></div>'
+    return
+  }
+  blogs.forEach(blog => grid.appendChild(createCard(blog)))
 }
 
 function openModal(blog) {
@@ -51,17 +63,18 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeModal()
 })
 
+searchInput.addEventListener('input', () => {
+  const query = searchInput.value.trim().toLowerCase()
+  const filtered = query
+    ? allBlogs.filter(b => b.blogTitle.toLowerCase().includes(query))
+    : allBlogs
+  renderBlogs(filtered)
+})
+
 async function init() {
   try {
-    const blogs = await fetchBlogs()
-    grid.innerHTML = ''
-
-    if (!blogs || blogs.length === 0) {
-      grid.innerHTML = '<div class="empty-state"><span>No blogs yet.</span></div>'
-      return
-    }
-
-    blogs.forEach(blog => grid.appendChild(createCard(blog)))
+    allBlogs = await fetchBlogs()
+    renderBlogs(allBlogs)
   } catch {
     grid.innerHTML = '<div class="empty-state"><span>Failed to load blogs.</span></div>'
   }
