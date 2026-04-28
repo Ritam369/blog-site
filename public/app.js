@@ -5,6 +5,7 @@ const modalTitle = document.getElementById('modal-title')
 const modalDesc = document.getElementById('modal-desc')
 const modalVisitLink = document.getElementById('modal-visit-link')
 const searchInput = document.getElementById('search-input')
+const searchClear = document.getElementById('search-clear')
 
 let allBlogs = []
 
@@ -65,10 +66,18 @@ document.addEventListener('keydown', (e) => {
 
 searchInput.addEventListener('input', () => {
   const query = searchInput.value.trim().toLowerCase()
+  searchClear.classList.toggle('visible', query.length > 0)
   const filtered = query
     ? allBlogs.filter(b => b.blogTitle.toLowerCase().includes(query))
     : allBlogs
   renderBlogs(filtered)
+})
+
+searchClear.addEventListener('click', () => {
+  searchInput.value = ''
+  searchClear.classList.remove('visible')
+  renderBlogs(allBlogs)
+  searchInput.focus()
 })
 
 async function init() {
